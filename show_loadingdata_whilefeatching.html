@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show loading data while fetching</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const img = document.createElement("img");
+        const loading = document.createElement("p");
+        const app = document.getElementById("app");
+        app.appendChild(img);
+        app.appendChild(loading);
+
+        async function showData() {
+
+            try {
+                let data; 
+                loading.innerHTML = "loading..."
+                const res = await fetch("https://api.thecatapi.com/v1/images/search");
+                 data = await res.json();
+                
+                loading.innerHTML = ""
+                img.setAttribute("src", data[0].url);
+
+
+            }catch (error) {
+                console.log(error);
+                loading.innerText = "Failed to load 😢";
+            }
+            
+        }
+
+        showData();
+
+    </script>
+</body>
+</html>

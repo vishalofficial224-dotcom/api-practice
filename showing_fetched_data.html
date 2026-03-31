@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display fetch data inside dom</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+
+
+    <script>
+        const img = document.createElement('img');
+        const app = document.getElementById('app');
+        app.appendChild(img)
+        
+
+        async function  getGeeta() {
+            const res = await fetch("https://api.thecatapi.com/v1/images/search");
+            const data = await res.json();
+            img.setAttribute("src", data[0].url); 
+            console.log(data)
+        }
+
+        getGeeta();
+    </script>
+    
+</body>
+</html>
