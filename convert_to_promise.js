@@ -17,7 +17,7 @@ const callbackPromise = new Promise((resolve, reject) => {
 
 console.log(callbackPromise)
 callbackPromise.then((data) => {
-    // console.log(data);
+    console.log(data);
 })
 
 
